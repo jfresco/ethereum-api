@@ -4,7 +4,7 @@ import getWallet from '../middleware/get-wallet';
 
 const api = Router();
 
-api.get('/createWallet', function (req, res) {
+api.get('/createWallet', function (req, res, next) {
   try {
     const { address, privateKey } = Wallet.create();
     res.send({ address, privateKey });
