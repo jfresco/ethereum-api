@@ -30,7 +30,12 @@ initializeDb( db => {
 	app.use(middleware({ config, db }));
 
 	// api router
-	app.use('/api', api({ config, db }));
+	app.use('/', api({ config, db }));
+
+  app.use((err, req, res, next) => {
+    console.log(err);
+    res.status(500).send({ error: err.message })
+  })
 
 	app.server.listen(process.env.PORT || config.port, () => {
 		console.log(`Started on port ${app.server.address().port}`);
