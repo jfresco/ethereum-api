@@ -1,5 +1,5 @@
-import ethers from 'ethers';
-import config from '../config.json';
+import ethers from 'ethers'
+import config from '../config.json'
 
 /** Entity that represents a wallet. Abstracts `ethers` and the access to the provider. */
 export default class Wallet {
@@ -9,11 +9,11 @@ export default class Wallet {
    */
   constructor (privateKey) {
     // The network to use can be configured in `config.json`
-    const network = ethers.providers.networks[config.network];
+    const network = ethers.providers.networks[config.network]
 
     // Instantiate the wallet and set the provider
-    const wallet = new ethers.Wallet(privateKey);
-    wallet.provider = ethers.providers.getDefaultProvider(network);
+    const wallet = new ethers.Wallet(privateKey)
+    wallet.provider = ethers.providers.getDefaultProvider(network)
 
     // Keep "private" `ethers.Wallet` instance
     this._wallet = wallet
@@ -28,8 +28,8 @@ export default class Wallet {
    * @return {Promise<string>} The balance
    */
   async getBalance () {
-    const balance = await this._wallet.getBalance();
-    return ethers.utils.formatEther(balance);
+    const balance = await this._wallet.getBalance()
+    return ethers.utils.formatEther(balance)
   }
 
   /**
@@ -40,8 +40,8 @@ export default class Wallet {
    */
   createTransaction (destination, amount) {
     // The amount should be in wei
-    const amountWei = ethers.utils.parseEther(amount);
-    return this._wallet.send(destination, amountWei);
+    const amountWei = ethers.utils.parseEther(amount)
+    return this._wallet.send(destination, amountWei)
   }
 }
 
@@ -50,6 +50,6 @@ export default class Wallet {
  * @return {Wallet} the new wallet instance
  */
 Wallet.create = function () {
-  const { privateKey } = ethers.Wallet.createRandom();
-  return new Wallet(privateKey);
-};
+  const { privateKey } = ethers.Wallet.createRandom()
+  return new Wallet(privateKey)
+}

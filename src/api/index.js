@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import Wallet from '../lib/Wallet';
-import getWallet from '../middleware/get-wallet';
+import { Router } from 'express'
+import Wallet from '../lib/Wallet'
+import getWallet from '../middleware/get-wallet'
 
-const api = Router();
+const api = Router()
 
 /**
  * GET /createWallet
@@ -10,12 +10,12 @@ const api = Router();
  */
 api.get('/createWallet', function (req, res, next) {
   try {
-    const { address, privateKey } = Wallet.create();
-    res.send({ address, privateKey });
+    const { address, privateKey } = Wallet.create()
+    res.send({ address, privateKey })
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
 /**
  * GET /getBalance/{privateKey}
@@ -25,7 +25,7 @@ api.get('/createWallet', function (req, res, next) {
 api.get('/getBalance/:privateKey', getWallet, async function ({ wallet }, res, next) {
   try {
     const balance = await wallet.getBalance()
-    res.send({ balance });
+    res.send({ balance })
   } catch (err) {
     next(err)
   }
@@ -40,11 +40,11 @@ api.get('/getBalance/:privateKey', getWallet, async function ({ wallet }, res, n
  */
 api.post('/transaction', getWallet, async function ({ wallet, body: { destination, amount } }, res, next) {
   try {
-    const transaction = await wallet.createTransaction(destination, amount);
-    res.send({ transaction });
+    const transaction = await wallet.createTransaction(destination, amount)
+    res.send({ transaction })
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
-export default api;
+export default api

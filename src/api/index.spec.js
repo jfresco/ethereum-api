@@ -1,6 +1,7 @@
-import request from 'supertest';
-import { expect } from 'chai';
-import app from '../app';
+/* eslint-env mocha */
+import request from 'supertest'
+import { expect } from 'chai'
+import app from '../app'
 
 const wallets = [
   {
@@ -11,7 +12,7 @@ const wallets = [
     'address': '0xC5be62D73FbC070059B596B5F2fc4df128fB2a70',
     'privateKey': '0x24a9c665650afcf2a9b9db86e1d3ce01b9f1bc48178479a6bc607016d0026d15'
   }
-];
+]
 
 describe('GET /createWallet', () => {
   it('creates a new wallet', () =>
@@ -19,8 +20,8 @@ describe('GET /createWallet', () => {
       .get('/createWallet')
       .expect(200)
       .then(({ body }) => {
-        expect(body).to.have.property('privateKey').to.be.a('string');
-        expect(body).to.have.property('address').to.be.a('string');
+        expect(body).to.have.property('privateKey').to.be.a('string')
+        expect(body).to.have.property('address').to.be.a('string')
       }))
 })
 
@@ -30,7 +31,7 @@ describe('GET /getBalance/:privateKey', () => {
       .get(`/getBalance/${wallets[0].privateKey}`)
       .expect(200)
       .then(({ body }) => {
-        expect(body).to.have.property('balance').to.be.a('string');
+        expect(body).to.have.property('balance').to.be.a('string')
       }))
 })
 
@@ -45,6 +46,6 @@ describe('POST /transaction', () => {
       })
       .expect(200)
       .then(({ body }) => {
-        expect(body).to.have.property('transaction').to.be.an('object');
+        expect(body).to.have.property('transaction').to.be.an('object')
       }))
 })

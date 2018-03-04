@@ -9,22 +9,7 @@
     "build": "babel src -s -D -d dist",
     "start": "node dist",
     "prestart": "npm run -s build",
-    "test": "eslint src && mocha --require babel-register --require babel-polyfill src/**/*.spec.js"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "ecmaVersion": 2017,
-      "sourceType": "module"
-    },
-    "env": {
-      "node": true,
-      "mocha": true
-    },
-    "rules": {
-      "no-console": 0,
-      "no-unused-vars": 1
-    }
+    "test": "standard && mocha --require babel-register --require babel-polyfill src/**/*.spec.js"
   },
   "repository": "developit/express-es6-rest-api",
   "author": "Jason Miller <jason@developit.ca>",
@@ -35,8 +20,7 @@
     "cors": "^2.7.1",
     "ethers": "^2.2.6",
     "express": "^4.13.3",
-    "morgan": "^1.8.0",
-    "resource-router-middleware": "^0.6.0"
+    "morgan": "^1.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -45,9 +29,9 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
-    "eslint": "^3.1.1",
     "mocha": "^5.0.1",
     "nodemon": "^1.9.2",
+    "standard": "^11.0.0",
     "supertest": "^3.0.0"
   }
 }

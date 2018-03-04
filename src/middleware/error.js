@@ -4,6 +4,6 @@
  * error and send it back to the client.
  */
 export default (err, req, res, next) => {
-  console.log(err);
+  console.log(err)
   res.status(500).send({ error: err.message })
 }
